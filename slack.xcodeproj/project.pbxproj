@@ -13,6 +13,7 @@
 		290D87432810D84F000BDF2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290D87412810D84F000BDF2E /* Main.storyboard */; };
 		290D87452810D851000BDF2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 290D87442810D851000BDF2E /* Assets.xcassets */; };
 		290D87482810D851000BDF2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290D87462810D851000BDF2E /* LaunchScreen.storyboard */; };
+		29B76F0E2810FE9900D952D3 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */; };
 		43CA3488BFC3D4FD46C82D93 /* Pods_slack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC76E4D7886D135BB4CE12DF /* Pods_slack.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,9 @@
 		290D87442810D851000BDF2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		290D87472810D851000BDF2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		290D87492810D851000BDF2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29B76F0B2810FE9700D952D3 /* slack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "slack-Bridging-Header.h"; sourceTree = "<group>"; };
+		29B76F0C2810FE9900D952D3 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		3DE976210BA3327572985390 /* Pods-slack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-slack.release.xcconfig"; path = "Pods/Target Support Files/Pods-slack/Pods-slack.release.xcconfig"; sourceTree = "<group>"; };
 		EC76E4D7886D135BB4CE12DF /* Pods_slack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_slack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,6 +67,7 @@
 		290D873A2810D84F000BDF2E /* slack */ = {
 			isa = PBXGroup;
 			children = (
+				29B76F0A2810FE5D00D952D3 /* SupportingFiles */,
 				290D873B2810D84F000BDF2E /* AppDelegate.swift */,
 				290D873D2810D84F000BDF2E /* SceneDelegate.swift */,
 				290D873F2810D84F000BDF2E /* ViewController.swift */,
@@ -72,6 +77,16 @@
 				290D87492810D851000BDF2E /* Info.plist */,
 			);
 			path = slack;
+			sourceTree = "<group>";
+		};
+		29B76F0A2810FE5D00D952D3 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				29B76F0C2810FE9900D952D3 /* SWRevealViewController.h */,
+				29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */,
+				29B76F0B2810FE9700D952D3 /* slack-Bridging-Header.h */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		F9EFE5A10A3331EDD5F6DEED /* Frameworks */ = {
@@ -124,6 +139,7 @@
 				TargetAttributes = {
 					290D87372810D84F000BDF2E = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -211,6 +227,7 @@
 				290D87402810D84F000BDF2E /* ViewController.swift in Sources */,
 				290D873C2810D84F000BDF2E /* AppDelegate.swift in Sources */,
 				290D873E2810D84F000BDF2E /* SceneDelegate.swift in Sources */,
+				29B76F0E2810FE9900D952D3 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTU3MN4DTE;
 				INFOPLIST_FILE = slack/Info.plist;
@@ -367,6 +385,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AgileAssociates.slack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "slack/SupportingFiles/slack-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,6 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GTU3MN4DTE;
 				INFOPLIST_FILE = slack/Info.plist;
@@ -387,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AgileAssociates.slack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "slack/SupportingFiles/slack-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
