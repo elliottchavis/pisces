@@ -10,13 +10,46 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    // swRevealContainer
+    var swContainer : SWRevealViewController?
+        
+    // main navigaion controller
+    var navigationController : UINavigationController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        
+        //setup window
+                window = UIWindow(windowScene: scene)
+                
+                //instantiate SWRevealController
+                swContainer = SWRevealViewController()
+                
+                // frontViewController
+                let frontVC = ChatVC()
+                
+                // menuViewController
+                let menuVC = ChannelVC()
+                
+                //set frontVC as root of navigationController
+                navigationController = UINavigationController(rootViewController: frontVC)
+                
+                //set navigaitionController as frontViewController of SWRevealController
+                swContainer?.frontViewController = navigationController
+                
+                //set menuController as rearViewController of SWRevealController
+                swContainer?.rearViewController = menuVC
+                
+                //set swContainer as root of window
+                window?.rootViewController = swContainer
+                
+                //make window key and visible
+                window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
