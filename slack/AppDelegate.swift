@@ -7,13 +7,51 @@
 
 import UIKit
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
+    // swRevealContainer
+    var swContainer : SWRevealViewController?
+    
+    // main navigaion controller
+    var navigationController : UINavigationController?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        guard #available(iOS 13, *) else {
+                    window = UIWindow(frame: UIScreen.main.bounds)
+                    
+                    //instantiate SWRevealController
+                    swContainer = SWRevealViewController()
+                    
+                    /// frontViewController
+                    let frontVC = ChatVC()
+                    
+                    /// menuViewController
+                    let menuVC = ChannelVC()
+                    
+                    //set frontVC as root of navigationController
+                    navigationController = UINavigationController(rootViewController: frontVC)
+                    
+                    //set navigaitionController as frontViewController of SWRevealController
+                    swContainer?.frontViewController = navigationController
+                    
+                    //set menuController as rearViewController of SWRevealController
+                    swContainer?.rearViewController = menuVC
+                    
+                    //set swContainer as root of window
+                    window?.rootViewController = swContainer
+                    
+                    //make window key and visible
+                    window?.makeKeyAndVisible()
+                    
+                    return true
+                    
+                }
         return true
     }
 
