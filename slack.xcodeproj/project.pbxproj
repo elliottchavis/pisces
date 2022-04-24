@@ -18,6 +18,7 @@
 		29B76F0E2810FE9900D952D3 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */; };
 		29DF5D2F28150AAF00C40349 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF5D2E28150AAF00C40349 /* LoginVC.swift */; };
 		29DF5D322815169F00C40349 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF5D312815169F00C40349 /* InputContainerView.swift */; };
+		29DF5D3528153CAD00C40349 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF5D3428153CAD00C40349 /* SignUpVC.swift */; };
 		43CA3488BFC3D4FD46C82D93 /* Pods_slack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC76E4D7886D135BB4CE12DF /* Pods_slack.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		29DF5D2E28150AAF00C40349 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		29DF5D312815169F00C40349 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		29DF5D3428153CAD00C40349 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		3DE976210BA3327572985390 /* Pods-slack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-slack.release.xcconfig"; path = "Pods/Target Support Files/Pods-slack/Pods-slack.release.xcconfig"; sourceTree = "<group>"; };
 		EC76E4D7886D135BB4CE12DF /* Pods_slack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_slack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				296A03582811E60D0092FC86 /* ChatVC.swift */,
+				29DF5D3428153CAD00C40349 /* SignUpVC.swift */,
 				29DF5D2E28150AAF00C40349 /* LoginVC.swift */,
 				296A035C2811E61D0092FC86 /* ChannelVC.swift */,
 				29A2D6172812251D0014FEE5 /* PresentationController.swift */,
@@ -275,6 +278,7 @@
 				29A2D6182812251D0014FEE5 /* PresentationController.swift in Sources */,
 				29B76F0E2810FE9900D952D3 /* SWRevealViewController.m in Sources */,
 				296A035D2811E61D0092FC86 /* ChannelVC.swift in Sources */,
+				29DF5D3528153CAD00C40349 /* SignUpVC.swift in Sources */,
 				29A2D61D281236ED0014FEE5 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

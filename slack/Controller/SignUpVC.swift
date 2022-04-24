@@ -1,22 +1,21 @@
 //
-//  LoginVC.swift
+//  SignUpVC.swift
 //  slack
 //
-//  Created by elliott chavis on 4/23/22.
+//  Created by elliott chavis on 4/24/22.
 //
 
 import UIKit
 
-class LoginVC: UIViewController {
+class SignUpVC: UIViewController {
     
     // MARK: - Properties
     
     private lazy var exitButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
-        //button.setImage(#imageLiteral(resourceName: "closeButton"), for: .normal)
         button.tintColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        button.addTarget(self, action: #selector(dismissLoginVC), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismissSignUpVC), for: .touchUpInside)
         return button
     }()
     
@@ -26,12 +25,17 @@ class LoginVC: UIViewController {
         return iv
     }()
     
-    private let piscesLabel: UILabel = {
+    
+    private let signUpLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 45)
-        label.text = "pisces"
+        label.text = "signup"
         label.textColor = .black
         return label
+    }()
+    
+    private lazy var usernameContainerView: UIView = {
+        return InputContainerView(image: UIImage(systemName: "person"), textField: usernameTextField)
     }()
     
     private lazy var emailContainerView: UIView = {
@@ -41,14 +45,20 @@ class LoginVC: UIViewController {
     private lazy var passwordContainerView: InputContainerView = {
         let containerView = InputContainerView(image: UIImage(systemName: "lock"), textField: passwordTextField)
         containerView.backgroundColor = .clear
-        
         return containerView
+    }()
+    
+    private let usernameTextField: UITextField = {
+        let txt = UITextField()
+        txt.placeholder = "Username"
+        txt.textColor = .white
+        return txt
     }()
     
     private let emailTextField: UITextField = {
         let txt = UITextField()
         txt.placeholder = "Email"
-        txt.textColor = .darkGray
+        txt.textColor = .white
         return txt
     }()
     
@@ -56,14 +66,14 @@ class LoginVC: UIViewController {
         let txt = UITextField()
         txt.placeholder = "Password"
         txt.isSecureTextEntry = true
-        txt.textColor = .darkGray
+        txt.textColor = .white
 
         return txt
     }()
     
-    private let loginButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setHeight(height: 50)
@@ -73,40 +83,37 @@ class LoginVC: UIViewController {
         return button
     }()
     
-    private let dontHaveAccountButton: UIButton = {
+    private let haveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.gray])
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [.font: UIFont.boldSystemFont(ofSize: 16), .foregroundColor: UIColor.darkGray]))
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.gray])
+        attributedTitle.append(NSAttributedString(string: "Login", attributes: [.font: UIFont.boldSystemFont(ofSize: 16), .foregroundColor: UIColor.darkGray]))
         button.setAttributedTitle(attributedTitle, for: .normal)
-        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(dismissSignUpVC), for: .touchUpInside)
         return button
     }()
-    
     
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        view.makeCorner(withRadius: 30)
         configureUI()
     }
     
     // MARK: - Actions
     
-    @objc func dismissLoginVC() {
+    @objc func dismissSignUpVC() {
         self.dismiss(animated: true, completion: nil)
+
     }
     
-    @objc func handleShowSignUp() {
-        let controller = SignUpVC()
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true, completion: nil)
-    }
     
     // MARK: - Helpers
     
     func configureUI() {
+        
+        view.backgroundColor = .white
+        view.makeCorner(withRadius: 30)
+
         
         view.addSubview(exitButton)
         exitButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 30, paddingRight: 30)
@@ -116,22 +123,20 @@ class LoginVC: UIViewController {
         imageViewOne.anchor(top: exitButton.bottomAnchor, left: view.leftAnchor ,paddingTop: 30, paddingLeft: 80)
         imageViewOne.setDimensions(height: 75, width: 75)
         
-        view.addSubview(piscesLabel)
-        piscesLabel.centerY(inView: imageViewOne)
-        piscesLabel.anchor(left: imageViewOne.rightAnchor, paddingLeft: 15)
+        view.addSubview(signUpLabel)
+        signUpLabel.centerY(inView: imageViewOne)
+        signUpLabel.anchor(left: imageViewOne.rightAnchor, paddingLeft: 15)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
+        let stack = UIStackView(arrangedSubviews: [usernameContainerView, emailContainerView, passwordContainerView, signUpButton])
         stack.axis = .vertical
         stack.spacing = 16
         
         view.addSubview(stack)
         stack.anchor(top: imageViewOne.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 32, paddingRight: 32)
         
-        view.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.anchor( left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingLeft: 32, paddingRight: 32)
+        view.addSubview(haveAccountButton)
+        haveAccountButton.anchor( left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingLeft: 32, paddingRight: 32)
         
-        //emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        //passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
-
+ 
 }
