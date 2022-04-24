@@ -46,6 +46,7 @@ class ChannelVC: UIViewController {
         button.setTitle("Login", for: .normal)
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(showLoginVC), for: .touchUpInside)
         return button
     }()
     
@@ -57,6 +58,13 @@ class ChannelVC: UIViewController {
             configureUI()
             
         }
+    
+    // MARK: - Actions
+    
+    @objc func showLoginVC() {
+        let controller = LoginVC()
+        present(controller, animated: true, completion: nil)
+    }
     
     // MARK: - Helpers
     
@@ -80,7 +88,7 @@ class ChannelVC: UIViewController {
         loginButton.anchor(left: imageView.rightAnchor, paddingLeft: 30)
         
         tableView.backgroundColor = .clear
-        //tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         
         view.addSubview(tableView)
             tableView.translatesAutoresizingMaskIntoConstraints = false
