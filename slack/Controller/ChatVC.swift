@@ -18,13 +18,20 @@ class ChatVC: UIViewController {
         view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.6)
         return view
     }()
+    
+    private lazy var menuBtn: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "smackBurger"), for: .normal)
+        button.addTarget(self, action: #selector(hamburgerClicked), for: .touchUpInside)
+        return button
+    }()
 
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         setupView()
         setupNavBar()
         setupSWReveal()
@@ -47,9 +54,16 @@ class ChatVC: UIViewController {
 
     func setupNavBar(){
         navigationController?.navigationBar.isHidden = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "smackBurger"), style: .plain, target: self, action: #selector(hamburgerClicked))
+        
+        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+            let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 24)
+            currWidth?.isActive = true
+            let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 24)
+            currHeight?.isActive = true
+        
+        navigationItem.leftBarButtonItem = menuBarItem
         navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.init(red: 255/255, green: 215/255, blue: 0, alpha: 1)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         navigationController?.navigationBar.isTranslucent = false
     }
     
