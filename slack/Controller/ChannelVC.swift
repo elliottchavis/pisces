@@ -15,9 +15,9 @@ class ChannelVC: UIViewController {
     
     private let slackLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 25)
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
         label.textColor = .white
-        label.text = "Slack"
+        label.text = "Pisces"
         return label
     }()
     
