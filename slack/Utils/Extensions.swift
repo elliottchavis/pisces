@@ -9,6 +9,16 @@ import UIKit
 
 extension UIViewController {
     
+    func configureGradientLayer() {
+        let topColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        let bottomColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        let gradient = CAGradientLayer()
+        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradient.locations = [0, 1]
+        view.layer.addSublayer(gradient)
+        gradient.frame = view.frame
+    }
+    
 }
 
 extension UIView {
