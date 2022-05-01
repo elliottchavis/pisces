@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,10 @@
 		290D87482810D851000BDF2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290D87462810D851000BDF2E /* LaunchScreen.storyboard */; };
 		296A03592811E60D0092FC86 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A03582811E60D0092FC86 /* ChatVC.swift */; };
 		296A035D2811E61D0092FC86 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A035C2811E61D0092FC86 /* ChannelVC.swift */; };
+		2986D3ED281F4AAC00EB0A34 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986D3EC281F4AAC00EB0A34 /* RegistrationModel.swift */; };
 		29A2D6182812251D0014FEE5 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2D6172812251D0014FEE5 /* PresentationController.swift */; };
 		29A2D61D281236ED0014FEE5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2D61C281236ED0014FEE5 /* Extensions.swift */; };
+		29B2518E2817AB3E00C75307 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29B2518D2817AB3E00C75307 /* GoogleService-Info.plist */; };
 		29B76F0E2810FE9900D952D3 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */; };
 		29DF5D2F28150AAF00C40349 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF5D2E28150AAF00C40349 /* LoginVC.swift */; };
 		29DF5D322815169F00C40349 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF5D312815169F00C40349 /* InputContainerView.swift */; };
@@ -34,8 +36,10 @@
 		290D87492810D851000BDF2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		296A03582811E60D0092FC86 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		296A035C2811E61D0092FC86 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
+		2986D3EC281F4AAC00EB0A34 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		29A2D6172812251D0014FEE5 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		29A2D61C281236ED0014FEE5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		29B2518D2817AB3E00C75307 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29B76F0B2810FE9700D952D3 /* slack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "slack-Bridging-Header.h"; sourceTree = "<group>"; };
 		29B76F0C2810FE9900D952D3 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		29B76F0D2810FE9900D952D3 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 				290D87442810D851000BDF2E /* Assets.xcassets */,
 				290D87462810D851000BDF2E /* LaunchScreen.storyboard */,
 				290D87492810D851000BDF2E /* Info.plist */,
+				29B2518D2817AB3E00C75307 /* GoogleService-Info.plist */,
 			);
 			path = slack;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 		296A03572811E5B00092FC86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2986D3EC281F4AAC00EB0A34 /* RegistrationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +235,7 @@
 			files = (
 				290D87482810D851000BDF2E /* LaunchScreen.storyboard in Resources */,
 				290D87452810D851000BDF2E /* Assets.xcassets in Resources */,
+				29B2518E2817AB3E00C75307 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,23 +265,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-slack/Pods-slack-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-slack/Pods-slack-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-slack/Pods-slack-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-slack/Pods-slack-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-slack/Pods-slack-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -287,6 +287,7 @@
 				296A03592811E60D0092FC86 /* ChatVC.swift in Sources */,
 				290D873C2810D84F000BDF2E /* AppDelegate.swift in Sources */,
 				29DF5D2F28150AAF00C40349 /* LoginVC.swift in Sources */,
+				2986D3ED281F4AAC00EB0A34 /* RegistrationModel.swift in Sources */,
 				290D873E2810D84F000BDF2E /* SceneDelegate.swift in Sources */,
 				29DF5D322815169F00C40349 /* InputContainerView.swift in Sources */,
 				29DF5D39281785DF00C40349 /* AuthService.swift in Sources */,
@@ -352,7 +353,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -412,7 +413,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
