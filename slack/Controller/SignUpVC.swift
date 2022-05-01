@@ -11,6 +11,8 @@ class SignUpVC: UIViewController {
     
     // MARK: - Properties
     
+    private var viewModel = RegistrationModel()
+    
     private lazy var exitButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
@@ -51,22 +53,22 @@ class SignUpVC: UIViewController {
     private let usernameTextField: UITextField = {
         let txt = UITextField()
         txt.placeholder = "Username"
-        txt.textColor = .white
+        txt.textColor = .black
         return txt
     }()
     
     private let emailTextField: UITextField = {
         let txt = UITextField()
         txt.placeholder = "Email"
-        txt.textColor = .white
+        txt.textColor = .black
         return txt
     }()
     
     private let passwordTextField: UITextField = {
         let txt = UITextField()
-        txt.placeholder = "Password"
+        txt.placeholder = "Password (at least 8 characters...)"
         txt.isSecureTextEntry = true
-        txt.textColor = .white
+        txt.textColor = .black
 
         return txt
     }()
@@ -79,7 +81,7 @@ class SignUpVC: UIViewController {
         button.setHeight(height: 50)
         button.setTitleColor(.black, for: .normal)
         button.isEnabled = false
-        //button.addTarget(self, action: #selector(handleLogin),for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleSignUp),for: .touchUpInside)
         return button
     }()
     
@@ -97,14 +99,55 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNotificationObservers()
+        hideKeyboard()
     }
     
     // MARK: - Actions
+    
+    @objc func textDidChange(sender: UITextView) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else if sender == passwordTextField {
+            viewModel.password = sender.text
+        } else {
+            viewModel.username = sender.text
+        }
+        
+        checkFormStatus()
+    }
     
     @objc func dismissSignUpVC() {
         self.dismiss(animated: true, completion: nil)
 
     }
+    
+    @objc func handleSignUp() {
+        
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let username = usernameTextField.text?.lowercased() else { return }
+        //guard let profileImage = profileImage else { return }
+        
+        let credentials = RegistrationCredentials(email: email.lowercased(), password: password, username: username.lowercased())
+        
+        showLoader(true, withText: "Signing UP...")
+        
+        AuthService.shared.createUser(credentials: credentials) { error in
+            if let error = error {
+                print("DEBUG: \(error.localizedDescription)")
+                self.showLoader(true, withText: error.localizedDescription)
+                return
+            }
+            
+            self.showLoader(false)
+        }
+        
+    }
+    
+    @objc func dismissMyKeyboard(){
+     view.endEditing(true)
+     }
     
     
     // MARK: - Helpers
@@ -137,6 +180,30 @@ class SignUpVC: UIViewController {
         view.addSubview(haveAccountButton)
         haveAccountButton.anchor( left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingLeft: 32, paddingRight: 32)
         
+    }
+    
+    func checkFormStatus() {
+        if viewModel.formIsValid {
+            signUpButton.isEnabled = true
+            signUpButton.setTitleColor(.black, for: .normal)
+
+        } else {
+            signUpButton.isEnabled = false
+            signUpButton.setTitleColor(.lightGray, for: .normal)
+        }
+    }
+    
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+         target: self,
+         action: #selector(dismissMyKeyboard))
+         view.addGestureRecognizer(tap)
     }
  
 }

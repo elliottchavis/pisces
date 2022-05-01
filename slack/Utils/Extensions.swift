@@ -6,8 +6,24 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 extension UIViewController {
+    
+    static let hud = JGProgressHUD(style: .dark)
+    
+    func showLoader(_ show: Bool, withText text: String? = "Loading") {
+        view.endEditing(true)
+        UIViewController.hud.textLabel.text = text
+        
+        if show {
+            UIViewController.hud.show(in: view)
+            UIViewController.hud.dismiss(afterDelay: 2)
+        } else {
+            UIViewController.hud.dismiss()
+        }
+    }
+
     
     func configureGradientLayer() {
         let topColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
