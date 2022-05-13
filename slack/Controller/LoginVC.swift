@@ -69,7 +69,7 @@ class LoginVC: UIViewController {
         button.setHeight(height: 50)
         button.setTitleColor(.black, for: .normal)
         button.isEnabled = false
-        //button.addTarget(self, action: #selector(handleLogin),for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogin),for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +93,10 @@ class LoginVC: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc func handleLogin() {
+        
+    }
     
     @objc func dismissLoginVC() {
         self.dismiss(animated: true, completion: nil)
